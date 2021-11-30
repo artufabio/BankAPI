@@ -15,7 +15,7 @@ public class Customer {
 	private Integer id;
 	private String firstName;
 	private String lastName;
-	private LocalDate dob;
+	private String dob;
 	private String nationality;
 	private String address;
 	private String email;
@@ -32,7 +32,7 @@ public class Customer {
 			Integer id, 
 			String firstName, 
 			String lastName, 
-			LocalDate dob, 
+			String dob, 
 			String nationality, 
 			String address,
 			String email, 
@@ -75,11 +75,11 @@ public class Customer {
 		this.lastName = lastName;
 	}
 
-	public LocalDate getDob() {
+	public String getDob() {
 		return dob;
 	}
 
-	public void setDob(LocalDate dob) {
+	public void setDob(String dob) {
 		this.dob = dob;
 	}
 
