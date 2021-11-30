@@ -1,5 +1,7 @@
 package com.example.demo.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.example.demo.data.model.Customer;
@@ -16,5 +18,9 @@ public class CustomerService {
 	
 	public Customer createCustomer(Customer customer) {
 		return this.repo.save(customer);
+	}
+	
+	public List<Customer> getAllCustomers() {
+		return this.repo.findAll();
 	}
 }
