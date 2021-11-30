@@ -15,7 +15,7 @@ insert into customer
 	123456,
 	'Regent Street 103',
 	'1948-12-04',
-	'email@gmail.com'
+	'email@gmail.com',
 	'Elvis',
 	'Presley',
 	'American',
@@ -41,7 +41,7 @@ insert into customer
 	654321,
 	'Regent Street 301',
 	'1984-01-08',
-	'email2@gmail.com'
+	'email2@gmail.com',
 	'Freddy',
 	'Mercury',
 	'British',
