@@ -1,6 +1,9 @@
 package com.example.demo.controllers_test;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +43,21 @@ public class CustomerControllerIntegrationTest {
 		
 		ResultMatcher status = MockMvcResultMatchers.status().isCreated();
 		ResultMatcher content = MockMvcResultMatchers.content().json(testPlayerAsJsonResponse);
+		
+		this.mvc.perform(request).andExpect(status).andExpect(content);
+	}
+	
+	@Test
+	void getAllCustomersTest() throws Exception{
+		String listOfCustomersAsJson = this.mapper.writeValueAsString(List.of(
+				new Customer(1, "Elvis", "Presley", "1948-12-04", "American", "Regent Street 103", "email@gmail.com", 123456, 120000, "elvis25", "secret123"),
+				new Customer(2, "Freddy", "Mercury", "1984-01-08", "British", "Regent Street 301", "email2@gmail.com", 654321, 1200, "freddy25", "secret456")
+				));
+		
+		RequestBuilder request = get("/customer");
+		
+		ResultMatcher status = MockMvcResultMatchers.status().isOk();
+		ResultMatcher content = MockMvcResultMatchers.content().json(listOfCustomersAsJson);
 		
 		this.mvc.perform(request).andExpect(status).andExpect(content);
 	}
