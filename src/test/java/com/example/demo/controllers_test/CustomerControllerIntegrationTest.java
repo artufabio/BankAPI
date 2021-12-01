@@ -94,4 +94,18 @@ public class CustomerControllerIntegrationTest {
 		this.mvc.perform(request).andExpect(status).andExpect(content);
 	}
 	
+	@Test
+	void getHighBalanceCustomersTest() throws Exception{
+		String listOfCustomersAsJson = this.mapper.writeValueAsString(List.of(
+				new Customer(1, "Elvis", "Presley", "1948-12-04", "American", "Regent Street 103", "email@gmail.com", 123456, 120000, "elvis25", "secret123")
+				));
+		
+		RequestBuilder request = get("/customer/high-balance");
+		
+		ResultMatcher status = MockMvcResultMatchers.status().isOk();
+		ResultMatcher content = MockMvcResultMatchers.content().json(listOfCustomersAsJson);
+		
+		this.mvc.perform(request).andExpect(status).andExpect(content);
+	}
+	
 }
