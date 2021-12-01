@@ -60,4 +60,8 @@ public class CustomerService {
 		Customer found = customerToFind.get();
 		return found;
 	}
+	
+	public List<Customer> getHighBalanceCustomers(){
+		return this.repo.getHighBalanceCustomers();
+	}
 }
