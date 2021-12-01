@@ -66,6 +66,6 @@ public class CustomerControllerIntegrationTest {
 	
 	@Test
 	void deleteCustomerTest() throws Exception {
-		this.mvc.perform(delete("/customer/1")).andExpect(status().isOk());
+		this.mvc.perform(delete("/customer/delete/1")).andExpect(status().isOk());
 	}
 }
