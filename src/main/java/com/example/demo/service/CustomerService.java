@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -31,5 +32,26 @@ public class CustomerService {
 		} else {
 			this.repo.deleteById(id);
 		}
+	}
+	
+	public Customer updateCustomer(Customer customer, Integer id) {
+//		find the customer to update
+		Optional<Customer> customerToFind = this.repo.findById(id);
+		Customer customerToUpdate = customerToFind.get();
+		
+        //set that customer with the new values
+		customerToUpdate.setAccount(customer.getAccount());
+		customerToUpdate.setAddress(customer.getAddress());
+		customerToUpdate.setDob(customer.getDob());
+		customerToUpdate.setEmail(customer.getEmail());
+		customerToUpdate.setFirstName(customer.getFirstName());
+		customerToUpdate.setLastName(customer.getLastName());
+		customerToUpdate.setNationality(customer.getNationality());
+		customerToUpdate.setPassword(customer.getPassword());
+		customerToUpdate.setUsername(customer.getUsername());
+		customerToUpdate.setStartingBalance(customer.getStartingBalance());
+		
+        //save updated customer
+        return this.repo.save(customerToUpdate);
 	}
 }
