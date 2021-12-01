@@ -54,4 +54,10 @@ public class CustomerService {
         //save updated customer
         return this.repo.save(customerToUpdate);
 	}
+	
+	public Customer getCustomerById(Integer id) {
+		Optional<Customer> customerToFind = this.repo.findById(id);
+		Customer found = customerToFind.get();
+		return found;
+	}
 }
