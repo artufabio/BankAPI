@@ -58,4 +58,9 @@ public class CustomerController {
 	public ResponseEntity<List<Customer>> getHighBalanceCustomers(){
 		return new ResponseEntity<List<Customer>>(this.service.getHighBalanceCustomers(), HttpStatus.OK);
 	}
+	
+	@GetMapping("/low-balance")
+	public ResponseEntity<List<Customer>> getLowBalanceCustomers(){
+		return new ResponseEntity<List<Customer>>(this.service.getLowBalanceCustomers(), HttpStatus.OK);
+	}
 }

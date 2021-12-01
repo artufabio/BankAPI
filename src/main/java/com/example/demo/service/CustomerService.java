@@ -64,4 +64,8 @@ public class CustomerService {
 	public List<Customer> getHighBalanceCustomers(){
 		return this.repo.getHighBalanceCustomers();
 	}
+	
+	public List<Customer> getLowBalanceCustomers(){
+		return this.repo.getLowBalanceCustomers();
+	}
 }
