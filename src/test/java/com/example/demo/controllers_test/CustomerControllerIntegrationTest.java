@@ -81,4 +81,17 @@ public class CustomerControllerIntegrationTest {
 		
 		this.mvc.perform(request).andExpect(status).andExpect(content);
 	}
+	
+	@Test
+	void getCustomerByIdTest() throws Exception{
+		String customerAsJson = this.mapper.writeValueAsString(new Customer(1, "Elvis", "Presley", "1948-12-04", "American", "Regent Street 103", "email@gmail.com", 123456, 120000, "elvis25", "secret123"));
+		
+		RequestBuilder request = get("/customer/1");
+		
+		ResultMatcher status = MockMvcResultMatchers.status().isOk();
+		ResultMatcher content = MockMvcResultMatchers.content().json(customerAsJson);
+		
+		this.mvc.perform(request).andExpect(status).andExpect(content);
+	}
+	
 }
