@@ -3,6 +3,7 @@ package com.example.demo.controllers_test;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.List;
@@ -21,6 +22,7 @@ import org.springframework.test.web.servlet.ResultMatcher;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import com.example.demo.data.model.Customer;
+import com.example.demo.data.model.Player;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
@@ -67,5 +69,17 @@ public class CustomerControllerIntegrationTest {
 	@Test
 	void deleteCustomerTest() throws Exception {
 		this.mvc.perform(delete("/customer/delete/1")).andExpect(status().isOk());
+	}
+	
+	@Test
+	void updateCustomerTest() throws Exception{
+		String updatedCustomerAsJson = this.mapper.writeValueAsString(new Customer(1, "Bob", "Marley", "1948-12-04", "American", "Regent Street 103", "email@gmail.com", 123456, 120000, "elvis25", "secret123"));
+		
+		RequestBuilder request = put("/customer/update/1").contentType(MediaType.APPLICATION_JSON).content(updatedCustomerAsJson);
+		
+		ResultMatcher status = MockMvcResultMatchers.status().isAccepted();
+		ResultMatcher content = MockMvcResultMatchers.content().json(updatedCustomerAsJson);
+		
+		this.mvc.perform(request).andExpect(status).andExpect(content);
 	}
 }
