@@ -1,7 +1,9 @@
 package com.example.demo.controllers_test;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.List;
 
@@ -60,5 +62,10 @@ public class CustomerControllerIntegrationTest {
 		ResultMatcher content = MockMvcResultMatchers.content().json(listOfCustomersAsJson);
 		
 		this.mvc.perform(request).andExpect(status).andExpect(content);
+	}
+	
+	@Test
+	void deleteCustomerTest() throws Exception {
+		this.mvc.perform(delete("/customer/1")).andExpect(status().isOk());
 	}
 }
