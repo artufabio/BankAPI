@@ -23,4 +23,13 @@ public class CustomerService {
 	public List<Customer> getAllCustomers() {
 		return this.repo.findAll();
 	}
+	
+	public void deleteCustomer(Integer id) {
+		boolean exists = this.repo.existsById(id);
+		if (!exists) {
+			throw new IllegalStateException("Customer with id "+ id +"does not exist" );
+		} else {
+			this.repo.deleteById(id);
+		}
+	}
 }
