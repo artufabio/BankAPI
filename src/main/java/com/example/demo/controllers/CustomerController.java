@@ -48,4 +48,9 @@ public class CustomerController {
         ResponseEntity<Customer> response = new ResponseEntity<Customer>(this.service.updateCustomer(customer, id), HttpStatus.ACCEPTED); // 202
         return response;
     }
+	
+	@GetMapping("/{id}")
+	public ResponseEntity<Customer> getCustomerById(@PathVariable Integer id){
+		return new ResponseEntity<Customer>(this.service.getCustomerById(id), HttpStatus.OK);
+	}
 }
