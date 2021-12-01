@@ -13,6 +13,6 @@ public interface CustomerRepo extends JpaRepository<Customer, Integer> {
 
 	
 //	Custom query 
-	@Query("select c from customer where c.startingBalance > 10000;")
+	@Query("SELECT c FROM Customer c WHERE c.startingBalance > 10000")
 	List<Customer> getHighBalanceCustomers();
 }
