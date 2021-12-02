@@ -88,7 +88,7 @@ public class CustomerService {
 		return this.repo.getHighBalanceCustomers().stream().map(customer -> this.mapToDTO(customer)).collect(Collectors.toList());
 	}
 	
-	public List<Customer> getLowBalanceCustomers(){
-		return this.repo.getLowBalanceCustomers();
+	public List<CustomerDTO> getLowBalanceCustomersDTO(){
+		return this.repo.getLowBalanceCustomers().stream().map(customer -> this.mapToDTO(customer)).collect(Collectors.toList());
 	}
 }
