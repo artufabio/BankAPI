@@ -2,6 +2,7 @@ package com.example.demo.controllers;
 
 import java.util.List;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.data.dto.CustomerDTO;
 import com.example.demo.data.model.Customer;
 import com.example.demo.service.CustomerService;
 
@@ -22,7 +24,7 @@ public class CustomerController {
 
 	private CustomerService service;
 	
-	public CustomerController(CustomerService service) {
+	public CustomerController(CustomerService service, ModelMapper mapper) {
 		this.service = service;
 	}
 	
@@ -33,8 +35,8 @@ public class CustomerController {
 	}
 	
 	@GetMapping
-	public ResponseEntity<List<Customer>> getAllCustomers(){
-		return new ResponseEntity<List<Customer>>(this.service.getAllCustomers(), HttpStatus.OK);
+	public ResponseEntity<List<CustomerDTO>> getAllCustomersDTO(){
+		return new ResponseEntity<List<CustomerDTO>>(this.service.getAllCustomersDTO(), HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/delete/{id}")
@@ -50,17 +52,17 @@ public class CustomerController {
     }
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Customer> getCustomerById(@PathVariable Integer id){
-		return new ResponseEntity<Customer>(this.service.getCustomerById(id), HttpStatus.OK);
+	public ResponseEntity<CustomerDTO> getCustomerDTOById(@PathVariable Integer id){
+		return new ResponseEntity<CustomerDTO>(this.service.getCustomerDTOById(id), HttpStatus.OK);
 	}
 	
 	@GetMapping("/high-balance")
-	public ResponseEntity<List<Customer>> getHighBalanceCustomers(){
-		return new ResponseEntity<List<Customer>>(this.service.getHighBalanceCustomers(), HttpStatus.OK);
+	public ResponseEntity<List<CustomerDTO>> getHighBalanceCustomersDTO(){
+		return new ResponseEntity<List<CustomerDTO>>(this.service.getHighBalanceCustomersDTO(), HttpStatus.OK);
 	}
 	
 	@GetMapping("/low-balance")
-	public ResponseEntity<List<Customer>> getLowBalanceCustomers(){
-		return new ResponseEntity<List<Customer>>(this.service.getLowBalanceCustomers(), HttpStatus.OK);
+	public ResponseEntity<List<CustomerDTO>> getLowBalanceCustomersDTO(){
+		return new ResponseEntity<List<CustomerDTO>>(this.service.getLowBalanceCustomersDTO(), HttpStatus.OK);
 	}
 }

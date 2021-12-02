@@ -1,15 +1,9 @@
-package com.example.demo.data.model;
+package com.example.demo.data.dto;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.example.demo.data.model.Customer;
 
-@Entity
-public class Customer {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+public class CustomerDTO {
+	
 	private Integer id;
 	private String firstName;
 	private String lastName;
@@ -19,38 +13,27 @@ public class Customer {
 	private String email;
 	private Integer account;
 	private Integer startingBalance;
-	private String username;
-	private String password;
 	
-	public Customer() {}
-
-	public Customer(
-			Integer id, 
-			String firstName, 
-			String lastName, 
-			String dob, 
-			String nationality, 
-			String address,
-			String email, 
-			Integer account, 
-			Integer startingBalance, 
-			String username, 
-			String password) {
-		this.id = id;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.dob = dob;
-		this.nationality = nationality;
-		this.address = address;
-		this.email = email;
-		this.account = account;
-		this.startingBalance = startingBalance;
-		this.username = username;
-		this.password = password;
+	public CustomerDTO() {}
+	
+	public CustomerDTO(Customer customer) {
+		this.id = customer.getId();
+		this.firstName = customer.getFirstName();
+		this.lastName = customer.getLastName();
+		this.dob = customer.getDob();
+		this.nationality = customer.getNationality();
+		this.address = customer.getAddress();
+		this.email = customer.getEmail();
+		this.account = customer.getAccount();
+		this.startingBalance = customer.getStartingBalance();
 	}
-
+	
 	public Integer getId() {
 		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getFirstName() {
@@ -116,21 +99,7 @@ public class Customer {
 	public void setStartingBalance(Integer startingBalance) {
 		this.startingBalance = startingBalance;
 	}
-
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
 	
+	
+
 }
