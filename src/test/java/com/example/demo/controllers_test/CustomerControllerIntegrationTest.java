@@ -17,8 +17,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.Sql.ExecutionPhase;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.RequestBuilder;
-import org.springframework.test.web.servlet.ResultMatcher;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import com.example.demo.data.dto.CustomerDTO;
@@ -43,29 +41,23 @@ public class CustomerControllerIntegrationTest {
 		String testCustomerAsJsonResponse = this.mapper.writeValueAsString(
 				new Customer(3, "Elvis", "Presley", "1948-12-04", "American", "Regent Street 103", "email@gmail.com", 123456, 120000, "elvis25", "secret123"));
 		
-		RequestBuilder request = post("/customer/create").contentType(MediaType.APPLICATION_JSON).content(testCustomerAsJson);
-		
-		ResultMatcher status = MockMvcResultMatchers.status().isCreated();
-		ResultMatcher content = MockMvcResultMatchers.content().json(testCustomerAsJsonResponse);
-		
-		this.mvc.perform(request).andExpect(status).andExpect(content);
+		this.mvc.perform(post("/customer/create").contentType(MediaType.APPLICATION_JSON).content(testCustomerAsJson))
+			.andExpect(MockMvcResultMatchers.status().isCreated())
+			.andExpect(MockMvcResultMatchers.content().json(testCustomerAsJsonResponse));
 	}
 	
 	@Test
 	void getAllCustomersDTOTest() throws Exception{
-		Customer c1 = new Customer(1, "Elvis", "Presley", "1948-12-04", "American", "Regent Street 103", "email@gmail.com", 123456, 120000, "elvis25", "secret123");
-		Customer c2 = new Customer(2, "Freddy", "Mercury", "1984-01-08", "British", "Regent Street 301", "email2@gmail.com", 654321, 1200, "freddy25", "secret456");
 		String listOfCustomersDTOAsJson = this.mapper.writeValueAsString(List.of(
-				new CustomerDTO(c1),
-				new CustomerDTO(c2)
+				new CustomerDTO(
+						new Customer(1, "Elvis", "Presley", "1948-12-04", "American", "Regent Street 103", "email@gmail.com", 123456, 120000, "elvis25", "secret123")),
+				new CustomerDTO(
+						new Customer(2, "Freddy", "Mercury", "1984-01-08", "British", "Regent Street 301", "email2@gmail.com", 654321, 1200, "freddy25", "secret456"))
 				));
 		
-		RequestBuilder request = get("/customer");
-		
-		ResultMatcher status = MockMvcResultMatchers.status().isOk();
-		ResultMatcher content = MockMvcResultMatchers.content().json(listOfCustomersDTOAsJson);
-		
-		this.mvc.perform(request).andExpect(status).andExpect(content);
+		this.mvc.perform(get("/customer"))
+			.andExpect(MockMvcResultMatchers.status().isOk())
+			.andExpect(MockMvcResultMatchers.content().json(listOfCustomersDTOAsJson));
 	}
 	
 	@Test
@@ -77,12 +69,9 @@ public class CustomerControllerIntegrationTest {
 	void updateCustomerTest() throws Exception{
 		String updatedCustomerAsJson = this.mapper.writeValueAsString(new Customer(1, "Bob", "Marley", "1948-12-04", "American", "Regent Street 103", "email@gmail.com", 123456, 120000, "elvis25", "secret123"));
 		
-		RequestBuilder request = put("/customer/update/1").contentType(MediaType.APPLICATION_JSON).content(updatedCustomerAsJson);
-		
-		ResultMatcher status = MockMvcResultMatchers.status().isAccepted();
-		ResultMatcher content = MockMvcResultMatchers.content().json(updatedCustomerAsJson);
-		
-		this.mvc.perform(request).andExpect(status).andExpect(content);
+		this.mvc.perform(put("/customer/update/1").contentType(MediaType.APPLICATION_JSON).content(updatedCustomerAsJson))
+			.andExpect(MockMvcResultMatchers.status().isAccepted())
+			.andExpect(MockMvcResultMatchers.content().json(updatedCustomerAsJson));
 	}
 	
 	@Test
@@ -92,12 +81,9 @@ public class CustomerControllerIntegrationTest {
 						new Customer(1, "Elvis", "Presley", "1948-12-04", "American", "Regent Street 103", "email@gmail.com", 123456, 120000, "elvis25", "secret123")
 						));
 		
-		RequestBuilder request = get("/customer/1");
-		
-		ResultMatcher status = MockMvcResultMatchers.status().isOk();
-		ResultMatcher content = MockMvcResultMatchers.content().json(customerDTOAsJson);
-		
-		this.mvc.perform(request).andExpect(status).andExpect(content);
+		this.mvc.perform(get("/customer/1"))
+			.andExpect(MockMvcResultMatchers.status().isOk())
+			.andExpect(MockMvcResultMatchers.content().json(customerDTOAsJson));
 	}
 	
 	@Test
@@ -107,12 +93,9 @@ public class CustomerControllerIntegrationTest {
 						new Customer(1, "Elvis", "Presley", "1948-12-04", "American", "Regent Street 103", "email@gmail.com", 123456, 120000, "elvis25", "secret123")
 				)));
 		
-		RequestBuilder request = get("/customer/high-balance");
-		
-		ResultMatcher status = MockMvcResultMatchers.status().isOk();
-		ResultMatcher content = MockMvcResultMatchers.content().json(listOfCustomersDTOAsJson);
-		
-		this.mvc.perform(request).andExpect(status).andExpect(content);
+		this.mvc.perform(get("/customer/high-balance"))
+			.andExpect(MockMvcResultMatchers.status().isOk())
+			.andExpect(MockMvcResultMatchers.content().json(listOfCustomersDTOAsJson));
 	}
 	
 	@Test
@@ -122,11 +105,8 @@ public class CustomerControllerIntegrationTest {
 						new Customer(2, "Freddy", "Mercury", "1984-01-08", "British", "Regent Street 301", "email2@gmail.com", 654321, 1200, "freddy25", "secret456")
 				)));
 		
-		RequestBuilder request = get("/customer/low-balance");
-		
-		ResultMatcher status = MockMvcResultMatchers.status().isOk();
-		ResultMatcher content = MockMvcResultMatchers.content().json(listOfCustomersDTOAsJson);
-		
-		this.mvc.perform(request).andExpect(status).andExpect(content);
+		this.mvc.perform(get("/customer/low-balance"))
+			.andExpect(MockMvcResultMatchers.status().isOk())
+			.andExpect(MockMvcResultMatchers.content().json(listOfCustomersDTOAsJson));
 	}
 }
