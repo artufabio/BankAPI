@@ -101,13 +101,16 @@ public class CustomerControllerIntegrationTest {
 	}
 	
 	@Test
-	void getCustomerByIdTest() throws Exception{
-		String customerAsJson = this.mapper.writeValueAsString(new Customer(1, "Elvis", "Presley", "1948-12-04", "American", "Regent Street 103", "email@gmail.com", 123456, 120000, "elvis25", "secret123"));
+	void getCustomerDTOByIdTest() throws Exception{
+		String customerDTOAsJson = this.mapper.writeValueAsString(
+				new CustomerDTO(
+						new Customer(1, "Elvis", "Presley", "1948-12-04", "American", "Regent Street 103", "email@gmail.com", 123456, 120000, "elvis25", "secret123")
+						));
 		
 		RequestBuilder request = get("/customer/1");
 		
 		ResultMatcher status = MockMvcResultMatchers.status().isOk();
-		ResultMatcher content = MockMvcResultMatchers.content().json(customerAsJson);
+		ResultMatcher content = MockMvcResultMatchers.content().json(customerDTOAsJson);
 		
 		this.mvc.perform(request).andExpect(status).andExpect(content);
 	}
