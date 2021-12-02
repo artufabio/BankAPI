@@ -78,6 +78,12 @@ public class CustomerService {
 		return found;
 	}
 	
+	public CustomerDTO getCustomerDTOById(Integer id) {
+		Optional<Customer> customerToFind = this.repo.findById(id);
+		Customer found = customerToFind.get();
+		return this.mapToDTO(found);
+	}
+	
 	public List<Customer> getHighBalanceCustomers(){
 		return this.repo.getHighBalanceCustomers();
 	}

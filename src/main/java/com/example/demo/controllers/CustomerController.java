@@ -57,8 +57,8 @@ public class CustomerController {
     }
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Customer> getCustomerById(@PathVariable Integer id){
-		return new ResponseEntity<Customer>(this.service.getCustomerById(id), HttpStatus.OK);
+	public ResponseEntity<CustomerDTO> getCustomerDTOById(@PathVariable Integer id){
+		return new ResponseEntity<CustomerDTO>(this.service.getCustomerDTOById(id), HttpStatus.OK);
 	}
 	
 	@GetMapping("/high-balance")
