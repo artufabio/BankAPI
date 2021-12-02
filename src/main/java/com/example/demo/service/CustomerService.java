@@ -3,8 +3,10 @@ package com.example.demo.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.data.dto.CustomerDTO;
 import com.example.demo.data.model.Customer;
 import com.example.demo.repo.CustomerRepo;
 
@@ -13,8 +15,16 @@ public class CustomerService {
 
 	private CustomerRepo repo;
 	
-	public CustomerService(CustomerRepo repo) {
+	private ModelMapper mapper;
+	
+	public CustomerService(CustomerRepo repo, ModelMapper mapper) {
 		this.repo = repo;
+		this.mapper = mapper;
+	}
+	
+//	use MethodMapper to convert a Customer to a CustomerDTO
+	private CustomerDTO mapToDTO(Customer customer) {
+		return this.mapper.map(customer, CustomerDTO.class);
 	}
 	
 	public Customer createCustomer(Customer customer) {
