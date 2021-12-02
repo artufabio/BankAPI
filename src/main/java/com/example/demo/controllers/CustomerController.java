@@ -28,20 +28,20 @@ public class CustomerController {
 		this.service = service;
 	}
 	
-//	use MethodMapper to convert a Customer to a CustomerDTO
-//	private CustomerDTO mapToDTO(Customer customer) {
-//		return this.mapper.map(customer, CustomerDTO.class);
-//	}
-	
 	@PostMapping("/create")
 	public ResponseEntity<Customer> createCustomer(@RequestBody Customer customer){
 		ResponseEntity<Customer> response = new ResponseEntity<Customer>(this.service.createCustomer(customer), HttpStatus.CREATED);
 		return response;
 	}
 	
+//	@GetMapping
+//	public ResponseEntity<List<Customer>> getAllCustomers(){
+//		return new ResponseEntity<List<Customer>>(this.service.getAllCustomers(), HttpStatus.OK);
+//	}
+	
 	@GetMapping
-	public ResponseEntity<List<Customer>> getAllCustomers(){
-		return new ResponseEntity<List<Customer>>(this.service.getAllCustomers(), HttpStatus.OK);
+	public ResponseEntity<List<CustomerDTO>> getAllCustomersDTO(){
+		return new ResponseEntity<List<CustomerDTO>>(this.service.getAllCustomersDTO(), HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/delete/{id}")

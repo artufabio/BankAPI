@@ -27,7 +27,7 @@ public class CustomerDTO {
 		this.account = customer.getAccount();
 		this.startingBalance = customer.getStartingBalance();
 	}
-
+	
 	public Integer getId() {
 		return id;
 	}

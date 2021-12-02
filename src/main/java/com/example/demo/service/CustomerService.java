@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -27,13 +28,19 @@ public class CustomerService {
 		return this.mapper.map(customer, CustomerDTO.class);
 	}
 	
+	public List<CustomerDTO> getAllCustomersDTO(){
+		return this.repo.findAll().stream().map(customer -> this.mapToDTO(customer)).collect(Collectors.toList());
+	}
+	
 	public Customer createCustomer(Customer customer) {
 		return this.repo.save(customer);
 	}
 	
-	public List<Customer> getAllCustomers() {
-		return this.repo.findAll();
-	}
+//	public List<Customer> getAllCustomers() {
+//		return this.repo.findAll();
+//	}
+	
+	
 	
 	public void deleteCustomer(Integer id) {
 		boolean exists = this.repo.existsById(id);
