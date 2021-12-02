@@ -84,8 +84,8 @@ public class CustomerService {
 		return this.mapToDTO(found);
 	}
 	
-	public List<Customer> getHighBalanceCustomers(){
-		return this.repo.getHighBalanceCustomers();
+	public List<CustomerDTO> getHighBalanceCustomersDTO(){
+		return this.repo.getHighBalanceCustomers().stream().map(customer -> this.mapToDTO(customer)).collect(Collectors.toList());
 	}
 	
 	public List<Customer> getLowBalanceCustomers(){
