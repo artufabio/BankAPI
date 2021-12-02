@@ -1,7 +1,5 @@
 package com.example.demo.data.model;
 
-import java.time.LocalDate;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,8 +23,6 @@ public class Customer {
 	private String password;
 	
 	public Customer() {}
-
-	
 
 	public Customer(
 			Integer id, 
@@ -52,8 +48,6 @@ public class Customer {
 		this.username = username;
 		this.password = password;
 	}
-
-
 
 	public Integer getId() {
 		return id;
@@ -138,17 +132,5 @@ public class Customer {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-
-
-	@Override
-	public String toString() {
-		return "Customer [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", dob=" + dob
-				+ ", nationality=" + nationality + ", address=" + address + ", email=" + email + ", account=" + account
-				+ ", startingBalance=" + startingBalance + ", username=" + username + ", password=" + password + "]";
-	}
-	
-	
-	
 	
 }

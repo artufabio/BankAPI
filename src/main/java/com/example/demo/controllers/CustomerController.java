@@ -34,11 +34,6 @@ public class CustomerController {
 		return response;
 	}
 	
-//	@GetMapping
-//	public ResponseEntity<List<Customer>> getAllCustomers(){
-//		return new ResponseEntity<List<Customer>>(this.service.getAllCustomers(), HttpStatus.OK);
-//	}
-	
 	@GetMapping
 	public ResponseEntity<List<CustomerDTO>> getAllCustomersDTO(){
 		return new ResponseEntity<List<CustomerDTO>>(this.service.getAllCustomersDTO(), HttpStatus.OK);

@@ -36,12 +36,6 @@ public class CustomerService {
 		return this.repo.save(customer);
 	}
 	
-//	public List<Customer> getAllCustomers() {
-//		return this.repo.findAll();
-//	}
-	
-	
-	
 	public void deleteCustomer(Integer id) {
 		boolean exists = this.repo.existsById(id);
 		if (!exists) {
@@ -70,12 +64,6 @@ public class CustomerService {
 		
         //save updated customer
         return this.repo.save(customerToUpdate);
-	}
-	
-	public Customer getCustomerById(Integer id) {
-		Optional<Customer> customerToFind = this.repo.findById(id);
-		Customer found = customerToFind.get();
-		return found;
 	}
 	
 	public CustomerDTO getCustomerDTOById(Integer id) {
