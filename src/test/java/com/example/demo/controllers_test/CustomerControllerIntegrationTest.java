@@ -131,15 +131,16 @@ public class CustomerControllerIntegrationTest {
 	}
 	
 	@Test
-	void getLowBalanceCustomersTest() throws Exception{
-		String listOfCustomersAsJson = this.mapper.writeValueAsString(List.of(
-				new Customer(2, "Freddy", "Mercury", "1984-01-08", "British", "Regent Street 301", "email2@gmail.com", 654321, 1200, "freddy25", "secret456")
-				));
+	void getLowBalanceCustomersDTOTest() throws Exception{
+		String listOfCustomersDTOAsJson = this.mapper.writeValueAsString(List.of(
+				new CustomerDTO(
+						new Customer(2, "Freddy", "Mercury", "1984-01-08", "British", "Regent Street 301", "email2@gmail.com", 654321, 1200, "freddy25", "secret456")
+				)));
 		
 		RequestBuilder request = get("/customer/low-balance");
 		
 		ResultMatcher status = MockMvcResultMatchers.status().isOk();
-		ResultMatcher content = MockMvcResultMatchers.content().json(listOfCustomersAsJson);
+		ResultMatcher content = MockMvcResultMatchers.content().json(listOfCustomersDTOAsJson);
 		
 		this.mvc.perform(request).andExpect(status).andExpect(content);
 	}
