@@ -6,6 +6,6 @@
 ## 5. Screenshots about Postman requests and the output from the API.
 ## 6. Screenshots of the database proving that data is being persisted.
 ## 7. Screenshot of test results, including coverage report.
-![Test results]()
+![Test results](https://github.com/artufabio/BankAPI/blob/main/Documentation/Screenshots/test%20final%20coverage.png)
 ## 8. Link to Jira Board.
 [Clic here to go to the Jira Board of the project.](https://fabioartuso88.atlassian.net/jira/software/projects/BAN/boards/2/roadmap)
