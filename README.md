@@ -1,5 +1,14 @@
 # BankAPI
 ## 1. Why are we doing this?
+The goal of this project is to transform in a working application all the main concepts covered during the Software Development Bootcamp with the QA Ltd Academy. More specifically, the following points have been involved:
+- Agile(SCRUM) & Project Management(Git, Jira);
+- Databases & Cloud Fundamentals (H2, MySQL);
+- Programming Fundamentals (Java);
+- API Development (Spring Boot);
+- Automated Testing (JUnit);
+#### About the BankAPI
+This API is a prototype of an application that has a bank institution as a final user. Through this API customers details can be stored inside a database and the main CRUD operations can be applied in order to manipulate those data. Few custom requests can be applied, such as searching customers based on their id or visualize all the customers with a balance over or lower than 10,000.
+Customers displayed through GET requests are showed in a restricted mode since password and username will be hidden. This is just an example of how the final user can customise the application in order to protect customers details and their privacy.
 ## 2. How I expected the challange to go.
 ## 3. What went well? What didn't go as planned?
 ## 4. Possible improvements for future revisions of the project.
